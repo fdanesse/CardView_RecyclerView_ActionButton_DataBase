@@ -23,8 +23,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyHolder>{
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.mycardview,parent,false);
-        MyHolder mascota = new MyHolder(v);
-        return mascota;
+        return new MyHolder(v);
     }
 
     @Override
@@ -35,12 +34,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyHolder>{
     }
 
     @Override
-    public int getItemCount() {
-        return 0;
-    }
+    public int getItemCount() {return mascotas.size();}
 
 
-    class MyHolder extends RecyclerView.ViewHolder {
+    public static class MyHolder extends RecyclerView.ViewHolder {
 
         TextView nombre;
         ImageView foto;

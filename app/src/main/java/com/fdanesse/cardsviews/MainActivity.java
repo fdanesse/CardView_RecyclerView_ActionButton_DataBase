@@ -12,9 +12,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView reciclador;
-    private RecyclerView.LayoutManager layoutManager;
-    private RecyclerView.Adapter recyclerAdapter;
+    private RecyclerView recyclerView;
+    private Adapter recyclerAdapter;
 
     private ArrayList<Mascota> mascotas = new ArrayList<Mascota>();
 
@@ -23,25 +22,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        recyclerView = (RecyclerView) findViewById(R.id.ListadeMascotas);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+
+        recyclerAdapter = new Adapter(mascotas);
+        recyclerView.setAdapter(recyclerAdapter);
+
         mascotas.add(new Mascota(R.drawable.p01, "Cacique"));
         mascotas.add(new Mascota(R.drawable.p02, "Pancho"));
         mascotas.add(new Mascota(R.drawable.p03, "Sara"));
         mascotas.add(new Mascota(R.drawable.p04, "Marta"));
 
-
-        reciclador = (RecyclerView) findViewById(R.id.ListadeMascotas);
-        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        reciclador.setLayoutManager(layoutManager);
-
-        recyclerAdapter = new Adapter(mascotas);
-        reciclador.setAdapter(recyclerAdapter);
-
         FloatingActionButton camara = (FloatingActionButton) findViewById(R.id.Camara);
         camara.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(v, "OK", Snackbar.LENGTH_LONG).setAction("Accion", null).show();
+                Snackbar.make(v, "Mascotas: " + recyclerAdapter.getItemCount() + " " +
+                        recyclerAdapter.toString(),
+                        Snackbar.LENGTH_LONG).setAction("Accion", null).show();
             }
         });
+
     }
 }
