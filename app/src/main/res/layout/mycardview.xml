@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mycardview"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_marginBottom="16dp"
+    card_view:cardCornerRadius="4dp"
+    card_view:cardElevation="5dp">
+
+    <LinearLayout
+        android:id="@+id/LinearLayout_CardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ImageViewMascota"
+            android:layout_width="match_parent"
+            android:layout_height="160dp" />
+
+        <LinearLayout
+            android:id="@+id/LinearLayout_Descripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/huesoblanco"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/huesoblanco"
+                android:scaleType="centerInside"/>
+
+            <TextView
+                android:id="@+id/TextViewNombre"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:text="Perro"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:textSize="20sp"/>
+
+            <ImageView
+                android:id="@+id/huesoamarillo"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:src="@drawable/huesoamarillo"
+                android:scaleType="centerInside"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>
