@@ -36,7 +36,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyHolder>{
     @Override
     public int getItemCount() {return mascotas.size();}
 
-
     public static class MyHolder extends RecyclerView.ViewHolder {
 
         TextView nombre;
@@ -44,7 +43,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyHolder>{
 
         public MyHolder(View itemView) {
             super(itemView);
-            nombre = (TextView) itemView.findViewById(R.id.TextViewNombre);
+            nombre = (TextView) itemView.findViewById(R.id.nombre);
             foto = (ImageView) itemView.findViewById(R.id.ImageViewMascota);
         }
     }
