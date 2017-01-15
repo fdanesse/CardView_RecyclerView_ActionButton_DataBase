@@ -2,7 +2,6 @@ package com.fdanesse.cardsviews;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private Adapter recyclerAdapter;
 
     private ArrayList<Mascota> mascotas = new ArrayList<Mascota>();
-    private SharedPreferences.Editor conf;
+    private DataBase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        DataBase db = new DataBase(this, Constants.BASENAME, Constants.BASEVER);
+        db = new DataBase(this, Constants.BASENAME, Constants.BASEVER);
         mascotas = db.getMascotas();
         if (mascotas.size() < 1){
             initial_insert_data_in_database(db); //Solo para datos iniciales
@@ -52,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-        recyclerAdapter = new Adapter(mascotas);
+        recyclerAdapter = new Adapter(mascotas, this);
         recyclerView.setAdapter(recyclerAdapter);
 
         FloatingActionButton camara = (FloatingActionButton) findViewById(R.id.Camara);
@@ -94,5 +93,46 @@ public class MainActivity extends AppCompatActivity {
         contentValues.put(Constants.MASCOTA_NAME, "Marta");
         contentValues.put(Constants.MASCOTA_PHOTO, R.drawable.p04);
         db.set_new_item(contentValues);
+
+        contentValues = new ContentValues();
+        contentValues.put(Constants.MASCOTA_NAME, "Ramon");
+        contentValues.put(Constants.MASCOTA_PHOTO, R.drawable.p05);
+        db.set_new_item(contentValues);
+
+        contentValues = new ContentValues();
+        contentValues.put(Constants.MASCOTA_NAME, "Sancho");
+        contentValues.put(Constants.MASCOTA_PHOTO, R.drawable.p06);
+        db.set_new_item(contentValues);
+
+        contentValues = new ContentValues();
+        contentValues.put(Constants.MASCOTA_NAME, "Matilde");
+        contentValues.put(Constants.MASCOTA_PHOTO, R.drawable.p07);
+        db.set_new_item(contentValues);
+
+        contentValues = new ContentValues();
+        contentValues.put(Constants.MASCOTA_NAME, "Viqui");
+        contentValues.put(Constants.MASCOTA_PHOTO, R.drawable.p08);
+        db.set_new_item(contentValues);
+
+        contentValues = new ContentValues();
+        contentValues.put(Constants.MASCOTA_NAME, "Satan");
+        contentValues.put(Constants.MASCOTA_PHOTO, R.drawable.p09);
+        db.set_new_item(contentValues);
+
+        contentValues = new ContentValues();
+        contentValues.put(Constants.MASCOTA_NAME, "Elisa");
+        contentValues.put(Constants.MASCOTA_PHOTO, R.drawable.p10);
+        db.set_new_item(contentValues);
+    }
+
+    public void add_like(int id){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Constants.FOREIGN_KEY, id);
+        contentValues.put(Constants.MASCOTA_LIKES, 1);
+        db.set_new_like(contentValues);
+    }
+
+    public int get_likes(int id){
+        return db.getLikes(id);
     }
 }

@@ -37,8 +37,8 @@ public class DetalleActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-        recyclerAdapter = new Adapter(mascotas);
-        recyclerView.setAdapter(recyclerAdapter);
+        //recyclerAdapter = new Adapter(mascotas);
+        //recyclerView.setAdapter(recyclerAdapter);
 
     }
 }

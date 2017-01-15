@@ -61,4 +61,24 @@ public class DataBase extends SQLiteOpenHelper {
         db.insert(Constants.MASCOTAS_TABLE_NAME, null, contentValues);
         db.close();
     }
+
+    public void set_new_like(ContentValues contentValues){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(Constants.LIKES_TABLE_NAME, null, contentValues);
+        db.close();
+    }
+
+    public int getLikes(int id){
+        int likes = 0;
+        String query = "SELECT COUNT(" + Constants.MASCOTA_LIKES + ")"+
+                " FROM " + Constants.LIKES_TABLE_NAME +
+                " WHERE " + Constants.FOREIGN_KEY + "=" + id;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cur = db.rawQuery(query, null);
+        if (cur.moveToNext()){
+            likes = cur.getInt(0);
+        }
+        db.close();
+        return likes;
+    }
 }
