@@ -5,10 +5,12 @@ package com.fdanesse.cardsviews;
  */
 public class Mascota {
 
+    private int id;
     private int foto;
     private String nombre;
 
-    public Mascota(int foto, String nombre){
+    public Mascota(int id, String nombre, int foto){
+        this.id = id;
         this.foto = foto;
         this.nombre = nombre;
     }
@@ -17,15 +19,11 @@ public class Mascota {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public int getFoto() {
         return foto;
     }
 
-    public void setFoto(int foto) {
-        this.foto = foto;
+    public int getId() {
+        return id;
     }
 }

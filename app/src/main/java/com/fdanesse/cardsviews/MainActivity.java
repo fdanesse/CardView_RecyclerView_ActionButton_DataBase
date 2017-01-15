@@ -1,6 +1,8 @@
 package com.fdanesse.cardsviews;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private Adapter recyclerAdapter;
 
     private ArrayList<Mascota> mascotas = new ArrayList<Mascota>();
+    private SharedPreferences.Editor conf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +42,18 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
+        DataBase db = new DataBase(this, Constants.BASENAME, Constants.BASEVER);
+        mascotas = db.getMascotas();
+        if (mascotas.size() < 1){
+            initial_insert_data_in_database(db); //Solo para datos iniciales
+            mascotas = db.getMascotas();
+        }
+
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
         recyclerAdapter = new Adapter(mascotas);
         recyclerView.setAdapter(recyclerAdapter);
-
-        mascotas.add(new Mascota(R.drawable.p01, "Cacique"));
-        mascotas.add(new Mascota(R.drawable.p02, "Pancho"));
-        mascotas.add(new Mascota(R.drawable.p03, "Sara"));
-        mascotas.add(new Mascota(R.drawable.p04, "Marta"));
 
         FloatingActionButton camara = (FloatingActionButton) findViewById(R.id.Camara);
         camara.setOnClickListener(new View.OnClickListener() {
@@ -67,5 +72,27 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void initial_insert_data_in_database(DataBase db){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Constants.MASCOTA_NAME, "Cacique");
+        contentValues.put(Constants.MASCOTA_PHOTO, R.drawable.p01);
+        db.set_new_item(contentValues);
+
+        contentValues = new ContentValues();
+        contentValues.put(Constants.MASCOTA_NAME, "Pancho");
+        contentValues.put(Constants.MASCOTA_PHOTO, R.drawable.p02);
+        db.set_new_item(contentValues);
+
+        contentValues = new ContentValues();
+        contentValues.put(Constants.MASCOTA_NAME, "Sara");
+        contentValues.put(Constants.MASCOTA_PHOTO, R.drawable.p03);
+        db.set_new_item(contentValues);
+
+        contentValues = new ContentValues();
+        contentValues.put(Constants.MASCOTA_NAME, "Marta");
+        contentValues.put(Constants.MASCOTA_PHOTO, R.drawable.p04);
+        db.set_new_item(contentValues);
     }
 }
