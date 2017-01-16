@@ -14,6 +14,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.fdanesse.cardsviews.acercade.AcercadeActivity;
+import com.fdanesse.cardsviews.contacto.ContactoActivity;
 import com.fdanesse.cardsviews.db.DataBase;
 import com.fdanesse.cardsviews.detalle.DetalleActivity;
 import com.fdanesse.cardsviews.general.Constants;
@@ -71,9 +73,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.actionstar:
-                Intent intent = new Intent(MainActivity.this, DetalleActivity.class);
+                intent = new Intent(MainActivity.this, DetalleActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.Contacto:
+                intent = new Intent(MainActivity.this, ContactoActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.AcercaDe:
+                intent = new Intent(MainActivity.this, AcercadeActivity.class);
                 startActivity(intent);
                 break;
         }
