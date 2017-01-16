@@ -15,7 +15,7 @@
 
         <include
             android:id="@+id/mitoolbar"
-            layout="@layout/mitoolbar"
+            layout="@layout/maintoolbar"
             >
         </include>
 

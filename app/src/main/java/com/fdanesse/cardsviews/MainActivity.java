@@ -9,8 +9,10 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 
 import com.fdanesse.cardsviews.db.DataBase;
 import com.fdanesse.cardsviews.detalle.DetalleActivity;
@@ -22,7 +24,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar mitoolbar;
-    private ImageButton actionbutton;
     private RecyclerView recyclerView;
     private MainAdapter recyclerAdapter;
 
@@ -39,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
-
-        actionbutton = (ImageButton) findViewById(R.id.action);
 
         recyclerView = (RecyclerView) findViewById(R.id.ListadeMascotas);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -68,14 +67,24 @@ public class MainActivity extends AppCompatActivity {
                         Snackbar.LENGTH_LONG).setAction("Accion", null).show();
             }
         });
+    }
 
-        actionbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.actionstar:
                 Intent intent = new Intent(MainActivity.this, DetalleActivity.class);
                 startActivity(intent);
-            }
-        });
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.mainmenu, menu);
+        return true;
     }
 
     private void initial_insert_data_in_database(DataBase db){
