@@ -7,4 +7,16 @@
         android:icon="@drawable/star"
         android:orderInCategory="100"
         app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/AcercaDe"
+        android:title="Acerca De"
+        android:orderInCategory="101"
+        app:showAsAction="never|withText"/>
+
+    <item
+        android:id="@+id/Contacto"
+        android:title="Contacto"
+        android:orderInCategory="102"
+        app:showAsAction="never|withText"/>
 </menu>
