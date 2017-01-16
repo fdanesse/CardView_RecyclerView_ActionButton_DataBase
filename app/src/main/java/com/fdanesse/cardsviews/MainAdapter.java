@@ -8,24 +8,26 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.fdanesse.cardsviews.general.Mascota;
+
 import java.util.ArrayList;
 
 /**
  * Created by flavio on 10/01/17.
  */
-public class Adapter extends RecyclerView.Adapter<Adapter.MyHolder>{
+public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyHolder>{
 
     private ArrayList<Mascota> mascotas;
-    private static MainActivity parent;
+    private static MainActivity mainActivity = null;
 
-    public Adapter(ArrayList<Mascota> lista, MainActivity parent){
+    public MainAdapter(ArrayList<Mascota> lista, MainActivity mainActivity){
         this.mascotas = lista;
-        this.parent = parent;
+        this.mainActivity = mainActivity;
     }
 
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.mycardview,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.maincardview,parent,false);
         return new MyHolder(v);
     }
 
@@ -35,7 +37,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyHolder>{
         mascotaHolder.id = listItem.getId();
         mascotaHolder.foto.setImageResource(listItem.getFoto());
         mascotaHolder.nombre.setText(listItem.getNombre());
-        mascotaHolder.raiting.setText(Integer.toString(parent.get_likes(mascotaHolder.id)));
+        mascotaHolder.raiting.setText(String.valueOf(mainActivity.get_likes(mascotaHolder.id)));
     }
 
     @Override
@@ -59,8 +61,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyHolder>{
             hueso1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    parent.add_like(id);
-                    raiting.setText(Integer.toString(parent.get_likes(id)));
+                    mainActivity.add_like(id);
+                    raiting.setText(String.valueOf(mainActivity.get_likes(id)));
                 }
             });
         }

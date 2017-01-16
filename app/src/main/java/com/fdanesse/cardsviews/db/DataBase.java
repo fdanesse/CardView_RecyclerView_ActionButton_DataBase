@@ -1,10 +1,13 @@
-package com.fdanesse.cardsviews;
+package com.fdanesse.cardsviews.db;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.fdanesse.cardsviews.general.Constants;
+import com.fdanesse.cardsviews.general.Mascota;
 
 import java.util.ArrayList;
 
@@ -80,5 +83,34 @@ public class DataBase extends SQLiteOpenHelper {
         }
         db.close();
         return likes;
+    }
+
+    public ArrayList<Mascota> getUltimosLikes(int cantidad){
+        ArrayList<Mascota> mascotas = new ArrayList<Mascota>();
+
+        String query = "SELECT DISTINCT " + Constants.FOREIGN_KEY +
+                " FROM " + Constants.LIKES_TABLE_NAME + " ORDER BY " + Constants.LIKES_MASCOTA_ID + " DESC";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cur = db.rawQuery(query, null);
+        while(cur.moveToNext() && cantidad > 0){
+            int id_mascota = cur.getInt(0);
+            mascotas.add(getMascota(id_mascota));
+            cantidad--;
+        }
+        db.close();
+        return mascotas;
+    }
+
+    private Mascota getMascota(int id){
+        String query = "SELECT * FROM " + Constants.MASCOTAS_TABLE_NAME +
+                " WHERE " + Constants.MASCOTA_ID + " = " + id;
+        Mascota mascota = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cur = db.rawQuery(query, null);
+        if (cur.moveToNext()){
+            mascota = new Mascota(cur.getInt(0), cur.getString(1), cur.getInt(2));
+        }
+        db.close();
+        return mascota;
     }
 }

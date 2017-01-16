@@ -12,6 +12,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.fdanesse.cardsviews.db.DataBase;
+import com.fdanesse.cardsviews.detalle.DetalleActivity;
+import com.fdanesse.cardsviews.general.Constants;
+import com.fdanesse.cardsviews.general.Mascota;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar mitoolbar;
     private ImageButton actionbutton;
     private RecyclerView recyclerView;
-    private Adapter recyclerAdapter;
+    private MainAdapter recyclerAdapter;
 
     private ArrayList<Mascota> mascotas = new ArrayList<Mascota>();
     private DataBase db;
@@ -51,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-        recyclerAdapter = new Adapter(mascotas, this);
+        recyclerAdapter = new MainAdapter(mascotas, this);
         recyclerView.setAdapter(recyclerAdapter);
 
         FloatingActionButton camara = (FloatingActionButton) findViewById(R.id.Camara);

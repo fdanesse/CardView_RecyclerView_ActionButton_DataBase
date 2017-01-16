@@ -1,4 +1,4 @@
-package com.fdanesse.cardsviews;
+package com.fdanesse.cardsviews.general;
 
 /**
  * Created by flavio on 14/01/17.
