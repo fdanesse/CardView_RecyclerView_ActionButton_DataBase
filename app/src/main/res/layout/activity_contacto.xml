@@ -8,12 +8,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:orientation="vertical">
         
         <include
-            android:id="@+id/mitoolbar"
-            layout="@layout/maintoolbar"
+            android:id="@+id/generic_toolbar"
+            layout="@layout/generic_toolbar"
             >
         </include>
 
@@ -21,6 +20,7 @@
             android:id="@+id/nombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:text="Nombre"
             />
 
@@ -28,20 +28,31 @@
             android:id="@+id/correo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:text="mail@gmail.com"
+            />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="password"
             />
 
         <EditText
             android:id="@+id/comentario"
             android:layout_width="match_parent"
-            android:layout_height="370dp"
+            android:layout_height="240dp"
             android:text="Tu Mensaje"
+            android:layout_margin="10dp"
             />
 
         <Button
             android:id="@+id/enviar"
-            android:layout_width="match_parent"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="Enviar"
             />
 

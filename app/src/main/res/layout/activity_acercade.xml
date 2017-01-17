@@ -13,8 +13,8 @@
         android:background="#f0f0f0">
 
         <include
-            android:id="@+id/mitoolbar"
-            layout="@layout/maintoolbar"
+            android:id="@+id/generic_toolbar"
+            layout="@layout/generic_toolbar"
             >
         </include>
 

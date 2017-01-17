@@ -16,7 +16,7 @@ public class AcercadeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acercade);
 
-        mitoolbar = (Toolbar) findViewById(R.id.mitoolbar);
+        mitoolbar = (Toolbar) findViewById(R.id.generic_toolbar);
         setSupportActionBar(mitoolbar);
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);

@@ -17,6 +17,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    // javamail
+    packagingOptions {
+        pickFirst 'META-INF/LICENSE.txt' // picks the JavaMail license file
+    }
+    // javamail
+    repositories {
+        jcenter()
+        maven {
+            url "https://maven.java.net/content/groups/public/"
+        }
+    }
 }
 
 dependencies {
@@ -27,4 +39,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.2.0'
     compile 'com.android.support:cardview-v7:24.2.0'
     compile 'com.mikhaellopez:circularimageview:3.0.2'
+
+    compile 'com.sun.mail:android-mail:1.5.5'       // javamail
+    compile 'com.sun.mail:android-activation:1.5.5' // javamail https://java.net/projects/javamail/pages/Android
 }

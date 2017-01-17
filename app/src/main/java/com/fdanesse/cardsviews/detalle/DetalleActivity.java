@@ -28,7 +28,7 @@ public class DetalleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
 
-        mitoolbar = (Toolbar) findViewById(R.id.toolbar_detalle);
+        mitoolbar = (Toolbar) findViewById(R.id.generic_toolbar);
         setSupportActionBar(mitoolbar);
 
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);

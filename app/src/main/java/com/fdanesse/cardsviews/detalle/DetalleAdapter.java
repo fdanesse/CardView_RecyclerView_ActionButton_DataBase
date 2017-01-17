@@ -27,7 +27,7 @@ public class DetalleAdapter extends RecyclerView.Adapter<DetalleAdapter.MyHolder
 
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.detallecardview, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_detalle, parent, false);
         return new MyHolder(v);
     }
 
