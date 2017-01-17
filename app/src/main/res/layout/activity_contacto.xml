@@ -50,10 +50,10 @@
 
         <Button
             android:id="@+id/enviar"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Enviar"
+            android:text="Enviar Comentario"
             />
 
     </LinearLayout>

@@ -1,33 +1,33 @@
-package com.fdanesse.cardsviews;
+package com.fdanesse.cardsviews.mimascota;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.fdanesse.cardsviews.R;
 import com.fdanesse.cardsviews.general.Mascota;
 
 import java.util.ArrayList;
 
 /**
- * Created by flavio on 10/01/17.
+ * Created by flavio on 17/01/17.
  */
-public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyHolder>{
+public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MyHolder>{
 
     private ArrayList<Mascota> mascotas;
-    private static FragmentMain mainActivity = null;
+    private static FragmentMiMascota fragment_mi_mascota = null;
 
-    public MainAdapter(ArrayList<Mascota> lista, FragmentMain mainActivity){
+    public MascotaAdapter(ArrayList<Mascota> lista, FragmentMiMascota fragment_mi_mascota){
         this.mascotas = lista;
-        this.mainActivity = mainActivity;
+        this.fragment_mi_mascota = fragment_mi_mascota;
     }
 
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_main,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_mi_mascota,parent,false);
         return new MyHolder(v);
     }
 
@@ -36,8 +36,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyHolder>{
         Mascota listItem = mascotas.get(position);
         mascotaHolder.id = listItem.getId();
         mascotaHolder.foto.setImageResource(listItem.getFoto());
-        mascotaHolder.nombre.setText(listItem.getNombre());
-        mascotaHolder.raiting.setText(String.valueOf(mainActivity.get_likes(mascotaHolder.id)));
+        mascotaHolder.raiting.setText(String.valueOf(fragment_mi_mascota.get_likes(mascotaHolder.id)));
     }
 
     @Override
@@ -46,25 +45,13 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyHolder>{
     public static class MyHolder extends RecyclerView.ViewHolder {
 
         int id;
-        TextView nombre;
         ImageView foto;
         TextView raiting;
-        ImageButton hueso1;
 
         public MyHolder(View itemView) {
             super(itemView);
-            nombre = (TextView) itemView.findViewById(R.id.nombre);
             foto = (ImageView) itemView.findViewById(R.id.ImageViewMascota);
             raiting = (TextView) itemView.findViewById(R.id.raiting);
-            hueso1 = (ImageButton) itemView.findViewById(R.id.hueso1);
-
-            hueso1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mainActivity.add_like(id);
-                    raiting.setText(String.valueOf(mainActivity.get_likes(id)));
-                }
-            });
         }
     }
 }
