@@ -10,6 +10,8 @@ import android.widget.EditText;
 
 import com.fdanesse.cardsviews.R;
 
+import javax.mail.MessagingException;
+
 public class ContactoActivity extends AppCompatActivity {
 
     private Toolbar mitoolbar;
@@ -38,7 +40,30 @@ public class ContactoActivity extends AppCompatActivity {
         enviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(comentario, "Mensaje Enviado.", Snackbar.LENGTH_INDEFINITE).show();
+
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try  {
+                            MailService mailService = new MailService();
+                            try {
+                                mailService.sendEmail(correo.getText().toString(),
+                                        password.getText().toString(),
+                                        comentario.getText().toString());
+                                /*
+                                Para que funcione: en la configuración de google de la cuenta
+                                origen del mail, hay que activar la opcion "Permitir el acceso de aplicaciones menos seguras"
+                                 */
+                            } catch (MessagingException e) {
+                                e.printStackTrace();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                thread.start();
+                Snackbar.make(comentario, "Mensaje Enviado", Snackbar.LENGTH_LONG).show();
             }
         });
     }
